@@ -48,7 +48,11 @@ app.put("/list", (req, res) => {
     );
   }
 });
-
+app.delete("/list/all", (req, res) => {
+  List.deleteMany({}, (err, result) =>
+    err ? res.send({ err }) : res.send({ result })
+  );
+});
 app.get("/list/:id", (req, res) => {
   List.find({ _id: req.params.id }, (err, result) =>
     err ? res.send({ err }) : res.send({ result })
