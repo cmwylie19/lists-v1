@@ -59,6 +59,10 @@ app.get("/list/:id", (req, res) => {
   );
 });
 
+app.get("/list/user/:email",(req,res)=>{
+  List.find({owner: req.params.email},(err,result)=>err?res.send({err}):res.send({result}))
+})
+
 app.get("/list", (req, res) => {
   List.find({}, (err, result) =>
     err ? res.send({ err }) : res.send({ result })
